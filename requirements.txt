@@ -1,0 +1,5 @@
+polars
+numba 
+pytest
+joblib
+wandb
