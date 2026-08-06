@@ -1,4 +1,3 @@
-#TODO: creare funzioni WineryHPCComputations, pairwise_stress_function
 import polars as pl
 import numpy as np
 from numba import jit
