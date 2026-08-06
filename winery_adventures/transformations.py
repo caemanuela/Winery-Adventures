@@ -13,7 +13,8 @@ class WineryTransformer(BaseWineryAnalyzer):
         """Applies all transformations in sequence."""
         df_out = self.add_avg_ph_per_tank(df)
         df_out = self.add_num_readings_per_tank(df_out)
-        df_out = self.add_num_readings_per_grape_variety(df_out)
+        if self.tank_info_df is not None:
+            df_out = self.add_num_readings_per_grape_variety(df_out)
         df_out = self.add_temperature_deviation(df_out)
         return df_out
 
