@@ -5,6 +5,5 @@ class BaseWineryAnalyzer(ABC):
 
     @abstractmethod
     def analyze_data(self, df: pl.DataFrame) -> pl.DataFrame:
-        """Metodo astratto per analizzare o trasformare il DataFrame."""
+        """Abstract method to analyze or transform the DataFrame."""
         pass
-    
