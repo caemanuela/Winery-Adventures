@@ -11,33 +11,34 @@ def run_full_pipeline(
     output_dir: Path | str,
     wandb_config: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
-    """Esegue la pipeline completa di analisi aziendale:
-    
-    Trasformazione dei dati grezzi.
-    Calcolo degli indicatori HPC (stress score).
-    Orchestrazione ed eventuale logging su WandB."""
+    """Runs the complete business analysis pipeline:
+
+    Raw data transformation.
+    Computation of HPC indicators (stress score).
+    Orchestration and optional WandB logging.
+    """
     raw_data_path = Path(raw_data_path)
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # 1. Inizializza le componenti della pipeline
+    # 1. Initialize pipeline components
     transformer = WineryTransformer()
     computations = WineryHPCComputations()
 
-    # 2. Inizializza la pipeline principale
+    # 2. Initialize main pipeline
     pipeline = WineryPipeline(
         transformer=transformer,
         computations=computations,
         wandb_config=wandb_config,
     )
 
-    # 3. Esegue la pipeline e salva i risultati
+    # 3. Run the pipeline and save results
     results = pipeline.run(input_path=raw_data_path, output_dir=output_dir)
 
     return results
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="Winery Adventures CLI Runner")
