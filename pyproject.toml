@@ -1,6 +1,6 @@
 [project]
 name = "winery-adventures"
-version = "0.1.0"
+version = "0.1.1"
 description = "HPC pipeline for winery analysis"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
@@ -30,7 +30,7 @@ packages = ["winery_adventures"]
 
 [tool.ruff]
 line-length = 88
-exclude = ["reports", ".venv", "dist", "build"]
+exclude = ["docs/reports", "reports", ".venv", "dist", "build"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]
@@ -47,9 +47,9 @@ testpaths = ["tests"]
 addopts = [
     "--cov=winery_adventures",
     "--cov-report=term-missing",
-    "--cov-report=html:reports/coverage_html",
-    "--cov-report=xml:reports/coverage.xml",
-    "--junitxml=reports/junit_report.xml",
+    "--cov-report=html:docs/reports/coverage_html",
+    "--cov-report=xml:docs/reports/coverage.xml",
+    "--junitxml=docs/reports/junit_report.xml",
 ]
 markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
