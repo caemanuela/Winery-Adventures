@@ -1,5 +1,5 @@
-from pathlib import Path
 import time
+from pathlib import Path
 
 import numpy as np
 import polars as pl
@@ -74,12 +74,14 @@ def run_benchmarks(data_path: str = "sensors.tsv") -> None:
     print(f"Numba speedup        : {speedup:.2f}x faster\n")
 
     # Save Phase 1 benchmark results
-    phase1_df = pl.DataFrame({
-        "implementation": ["Pure Python", "Numba (JIT)"],
-        "readings_count": [len(pH), len(pH)],
-        "execution_time_seconds": [python_time, numba_time],
-        "speedup_vs_python": [1.0, speedup],
-    })
+    phase1_df = pl.DataFrame(
+        {
+            "implementation": ["Pure Python", "Numba (JIT)"],
+            "readings_count": [len(pH), len(pH)],
+            "execution_time_seconds": [python_time, numba_time],
+            "speedup_vs_python": [1.0, speedup],
+        }
+    )
     phase1_df.write_csv(output_dir / "benchmark_numba_vs_python.csv")
 
     print("PHASE 2: Joblib scaling (full dataset)")
@@ -101,12 +103,14 @@ def run_benchmarks(data_path: str = "sensors.tsv") -> None:
         core_label = "all cores" if cores == -1 else f"{cores} cores"
         print(f"Joblib with {core_label:<12} : {elapsed:.4f} seconds")
 
-        scaling_records.append({
-            "n_jobs": core_label,
-            "total_dataset_rows": df.shape[0],
-            "execution_time_seconds": elapsed,
-            "speedup_vs_1_core": scaling_speedup,
-        })
+        scaling_records.append(
+            {
+                "n_jobs": core_label,
+                "total_dataset_rows": df.shape[0],
+                "execution_time_seconds": elapsed,
+                "speedup_vs_1_core": scaling_speedup,
+            }
+        )
 
     # Save Phase 2 benchmark results
     phase2_df = pl.DataFrame(scaling_records)
