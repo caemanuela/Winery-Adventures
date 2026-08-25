@@ -8,8 +8,8 @@ and transformation steps in order and can optionally log results to WandB.
 from typing import List, Optional
 
 import polars as pl
-
 import wandb
+
 from winery_adventures.base import BaseWineryAnalyzer
 
 
