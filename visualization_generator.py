@@ -151,8 +151,15 @@ def plot_numba_benchmark(csv_path: Path | str, output_path: Path | str) -> None:
 
 
 if __name__ == "__main__":
-    # Base project path
-    base_dir = Path("/Users/giadaorru/Desktop/winery-adventures")
+    # Dynamically locate the project root directory relative to this script's location
+    # Assuming this script is located at the project root or in a subfolder (e.g., scripts/)
+    script_dir = Path(__file__).resolve().parent
+    
+    # If the script is directly in the project root:
+    base_dir = script_dir
+    
+    # Alternative: if the script is inside a subfolder (e.g., /scripts/plot_benchmarks.py), 
+    # use: base_dir = script_dir.parent
 
     # Input CSV file paths
     reports_dir = base_dir / "docs" / "reports"
