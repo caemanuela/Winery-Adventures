@@ -208,3 +208,7 @@ data/full_*.csv
 Thumbs.db
 .vscode/
 .idea/
+
+# Sphinx documentation build artifacts
+docs/build/
+docs/_build/

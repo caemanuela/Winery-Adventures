@@ -4,6 +4,7 @@ Visualizes performance for Joblib (CPU parallelism) and Numba (JIT compilation).
 High-contrast, colorblind-friendly feminine palette.
 """
 
+import platform
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -12,7 +13,12 @@ import seaborn as sns
 
 
 def plot_joblib_benchmark(csv_path: Path | str, output_path: Path | str) -> None:
-    """Generates the plot for Joblib performance benchmarks."""
+    """Generates the plot for Joblib performance benchmarks.
+
+    Args:
+        csv_path (Path | str): Path to the CSV containing Joblib benchmark metrics.
+        output_path (Path | str): Destination path for the generated PNG chart.
+    """
     df = pd.read_csv(csv_path)
 
     sns.set_theme(style="whitegrid")
@@ -28,7 +34,7 @@ def plot_joblib_benchmark(csv_path: Path | str, output_path: Path | str) -> None
         "Execution Time (seconds)", color=color_bar, fontweight="bold", fontsize=11
     )
     bars = ax1.bar(
-        df["n_jobs"],
+        df["n_jobs"].astype(str),  # Cast to string for categorical plotting
         df["execution_time_seconds"],
         color=color_bar,
         alpha=0.9,
@@ -42,7 +48,7 @@ def plot_joblib_benchmark(csv_path: Path | str, output_path: Path | str) -> None
         "Speedup (vs 1 core)", color=color_line, fontweight="bold", fontsize=11
     )
     ax2.plot(
-        df["n_jobs"],
+        df["n_jobs"].astype(str),
         df["speedup_vs_1_core"],
         color=color_line,
         marker="o",
@@ -77,7 +83,12 @@ def plot_joblib_benchmark(csv_path: Path | str, output_path: Path | str) -> None
 
 
 def plot_numba_benchmark(csv_path: Path | str, output_path: Path | str) -> None:
-    """Generates the plot for Numba JIT performance benchmarks."""
+    """Generates the plot for Numba JIT performance benchmarks.
+
+    Args:
+        csv_path (Path | str): Path to the CSV containing Numba benchmark metrics.
+        output_path (Path | str): Destination path for the generated PNG chart.
+    """
     df = pd.read_csv(csv_path)
 
     sns.set_theme(style="whitegrid")
@@ -122,10 +133,16 @@ def plot_numba_benchmark(csv_path: Path | str, output_path: Path | str) -> None:
             color="#111111",
         )
 
-    # High-contrast annotation box
-    speedup_val = df.loc[
-        df["implementation"] == "Numba (JIT)", "speedup_vs_python"
-    ].values[0]
+    # High-contrast annotation box (Safe extraction)
+    if "speedup_vs_python" in df.columns:
+        speedup_series = df.loc[
+            df["implementation"].str.contains("Numba", case=False, na=False),
+            "speedup_vs_python",
+        ]
+        speedup_val = speedup_series.values[0] if not speedup_series.empty else 0.0
+    else:
+        speedup_val = 0.0
+
     ax.text(
         0.5,
         0.5,
@@ -152,35 +169,31 @@ def plot_numba_benchmark(csv_path: Path | str, output_path: Path | str) -> None:
 
 if __name__ == "__main__":
     # Dynamically locate the project root directory relative to this script's location
-    # Assuming this script is located at the project root or in a subfolder (e.g., scripts/)
-    script_dir = Path(__file__).resolve().parent
-    
-    # If the script is directly in the project root:
-    base_dir = script_dir
-    
-    # Alternative: if the script is inside a subfolder (e.g., /scripts/plot_benchmarks.py), 
-    # use: base_dir = script_dir.parent
+    base_dir = Path(__file__).resolve().parent
+
+    # Detect the operating system (e.g., 'darwin', 'windows', 'linux')
+    os_name = platform.system().lower()
 
     # Input CSV file paths
     reports_dir = base_dir / "docs" / "reports"
-    joblib_csv = reports_dir / "benchmark_joblib_scaling.csv"
-    numba_csv = reports_dir / "benchmark_numba_vs_python.csv"
+    joblib_csv = reports_dir / f"benchmark_joblib_scaling_{os_name}.csv"
+    numba_csv = reports_dir / f"benchmark_numba_vs_python_{os_name}.csv"
 
     # Output directory path
     output_dir = base_dir / "docs" / "data_visualization"
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Generate Joblib plot
+    # Generate Joblib plot appending OS name
     if joblib_csv.exists():
-        out_file = output_dir / "joblib_benchmark.png"
+        out_file = output_dir / f"joblib_benchmark_{os_name}.png"
         plot_joblib_benchmark(joblib_csv, output_path=out_file)
         print(f"Joblib chart successfully saved to: {out_file}")
     else:
         print(f"ERROR: Could not find file {joblib_csv}")
 
-    # Generate Numba plot
+    # Generate Numba plot appending OS name
     if numba_csv.exists():
-        out_file = output_dir / "numba_benchmark.png"
+        out_file = output_dir / f"numba_benchmark_{os_name}.png"
         plot_numba_benchmark(numba_csv, output_path=out_file)
         print(f"Numba chart successfully saved to: {out_file}")
     else:
