@@ -1,227 +1,359 @@
-# 🍷 Winery Adventures 🍇
+# Winery Adventures
 
-## Benvenuti nel Progetto di Winery Adventures!
+[Italiano](#versione-italiana) | [English](#english-version)
 
-Winery Adventures è un affascinante progetto di data science incentrato sulla gestione e l'analisi di dati provenienti da una piccola cantina moderna. In un'epoca in cui la qualità del prodotto e l'efficienza produttiva diventano sempre più importanti, Winery Adventures offre strumenti avanzati per monitorare, analizzare e ottimizzare le condizioni delle cisterne di fermentazione del vino.
+## Versione italiana
 
-Questo progetto integra concetti di ingegneria del software, data science, e programmazione orientata agli oggetti per creare un sistema completo che permette di:
+Winery Adventures è un progetto di analisi di dati provenienti da sensori utilizzati durante la fermentazione del vino. Il sistema elabora dati relativi a temperatura, pH e volume e calcola un indice di stress della fermentazione.
 
-- Raccogliere e processare dati da sensori distribuiti nelle cisterne di fermentazione
-- Analizzare parametri critici come pH, temperatura e volume del mosto
-- Visualizzare trend e anomalie nei dati
-- Generare reportistica avanzata sullo stato della fermentazione
-- Prevedere potenziali problemi prima che diventino critici
+Il progetto combina programmazione a oggetti, trasformazione dei dati e tecniche di High-Performance Computing (HPC) per analizzare i dati e ridurre i tempi di calcolo.
 
-Attraverso pipeline di dati efficienti e algoritmi ottimizzati, Winery Adventures trasforma semplici letture di sensori in informazioni preziose, contribuendo alla qualità del vino e all'efficienza operativa della cantina.
+## Funzionalità principali
 
-## 🎯 Obiettivi del Progetto
+- **Pipeline di elaborazione:** le diverse operazioni di trasformazione e analisi sono organizzate in una pipeline composta da più analyzer.
+- **Trasformazione dei dati:** Polars viene utilizzato per calcolare statistiche per cisterna, informazioni relative ai vitigni e deviazioni dalla temperatura di riferimento.
+- **Calcolo HPC:** il calcolo dello stress utilizza Numba per la compilazione JIT e Joblib per distribuire l'elaborazione tra più core.
+- **Tracciamento dei risultati:** il progetto può utilizzare Weights & Biases (WandB) per registrare lo `stress_score`.
+- **Documentazione:** la struttura e i principali componenti del progetto sono documentati con Sphinx e diagrammi UML.
 
-Il vostro compito è sviluppare un sistema software basato su pipeline di elaborazione dati che analizzi i dati provenienti dai sensori delle cisterne di fermentazione di una cantina di piccole dimensioni. **Importante**: Avrete accesso solo ai test e non alle implementazioni di riferimento. Dovrete interpretare i requisiti dai test forniti e implementare le classi e le funzioni necessarie seguendo le best practices di ingegneria del software, proprio come in un contesto reale in cui i test e le specifiche siano dati da un cliente o da un team di sviluppo.
+## Tecnologie utilizzate
 
-## Specifiche del Progetto
+- **Gestione dell'ambiente e delle dipendenze:** uv
+- **Data processing:** Polars, NumPy
+- **HPC e parallelizzazione:** Numba, Joblib
+- **Experiment tracking:** Weights & Biases
+- **Testing:** Pytest
+- **Code quality:** Ruff, Mypy
+- **Documentazione:** Sphinx
 
-### Informazioni Generali
+## Prerequisiti
 
-- **Tipo di Progetto**: Bonus (non obbligatorio)
-- **Valore**: Fino a 3 punti bonus
-- **Composizione Gruppi**: Da 2 a 4 studenti
+Prima di installare il progetto, assicurarsi di avere installato **Python 3.11 o 3.12** e **uv**, utilizzato per la gestione dell'ambiente virtuale e delle dipendenze.
 
-Il progetto integra tutti gli argomenti trattati durante il corso, sia nella parte pratica che in quella teorica, inclusa la progettazione UML.
+Se `uv` non è già installato, è possibile seguire le istruzioni nella [documentazione ufficiale di uv](https://docs.astral.sh/uv/getting-started/installation/).
 
-### Tecnologie e Framework
+## Installazione
 
-Il progetto richiede l'uso delle seguenti tecnologie:
-- **Python 3.10+**: Linguaggio di programmazione principale
-- **Polars**: Libreria per manipolazione dati ad alte prestazioni (simile a Pandas)
-- **Numba**: Per ottimizzazione di funzioni con codice compilato JIT
-- **Weights & Biases (wandb)**: Per il logging e la visualizzazione dei risultati
-- **Joblib**: Per parallelizzazione di task computazionali
-- **Pytest**: Per i test automatizzati
+Clonare il repository e spostarsi nella directory del progetto:
 
-### Come Partecipare
-
-Per partecipare al progetto, è necessario:
-
-1. Formare un gruppo di lavoro (da 2 a 4 studenti)
-2. Inviare una email al docente e tutor con:
-   - Nomi dei componenti del gruppo
-   - Numeri di matricola
-3. Creare un repository GitHub per il progetto
-4. Invitare il tutor Giulio Casti (username GitHub: GiulioCasti) come collaboratore
-
-### Tempistiche
-
-- **Scadenza**: Il progetto deve essere completato entro settembre
-- **Valutazione**: In presenza, con presentazione del lavoro svolto dal gruppo
-
-## Criteri di Valutazione
-
-La valutazione del progetto sarà basata sui seguenti criteri:
-
-### Gestione del Progetto e Riproducibilità
-- Gestione delle dipendenze
-- Documentazione chiara dei file di progetto
-- Facilità di setup e riproduzione dell'ambiente di sviluppo
-
-### Qualità del Codice
-- Configurazione adeguata per la formattazione del codice
-- Corretto utilizzo della programmazione orientata agli oggetti
-- Stile di codice conforme agli standard
-
-### DevOps e Automazione
-- Implementazione di workflow per continuous integration
-- Automazione di processi (es. test)
-- Controllo dello stato dei workflow nelle pull request
-
-### Performance e Ottimizzazione
-- Report di profilazione delle performance
-- Analisi dei tempi di esecuzione
-- Utilizzo appropriato di librerie avanzate per l'ottimizzazione
-
-### Documentazione
-- Docstring complete per funzioni e classi
-- Commenti chiari nel codice
-- Documentazione utente e sviluppatore
-
-### Modellazione
-- Correttezza dei diagrammi UML
-- Aderenza dell'implementazione ai diagrammi
-- Appropriata astrazione e modellazione delle entità
-
-### Testing
-- Superamento dei test di accettazione
-- Superamento dei test unitari
-- Copertura adeguata dei test (aggiungere test se ritenuto necessario)
-
-### Collaborazione e Uso degli Strumenti GitHub
-- Comunicazione efficace tra i membri del team
-- Utilizzo appropriato di commit, pull request e branch
-- Revisione del codice tra pari
-- Gestione delle issues
-
-## Struttura del Repository
-
-Il repository contiene già alcuni file e strutture che serviranno come punto di partenza:
-
-- Test unitari e di accettazione nella cartella `tests/`
-- Dataset di esempio nella cartella `data/`
-
-Gli studenti dovranno completare l'implementazione seguendo i requisiti e facendo passare tutti i test.
-
-## 🧩 Architettura del Sistema e Dettagli di Implementazione
-
-### Panoramica dell'Architettura
-
-Il sistema Winery Adventures è composto da diverse componenti che lavorano insieme in una pipeline di elaborazione dati:
-
-1. **Data Loading**: Caricamento dei dati dai file sorgente (formato TSV)
-2. **Data Transformation**: Trasformazioni dei dati (filtri, normalizzazioni, aggregazioni)
-3. **Data Analysis**: Analisi computazionali avanzate sui dati trasformati
-4. **Reporting**: Generazione di report e visualizzazioni
-
-### Componenti da Implementare
-
-#### 1. Base Class
-- Classe astratta che prende in input un DataFrame Polars e restituisce un DataFrame trasformato
-- Le sottoclassi devono implementare questo metodo con le loro specifiche analisi
-
-#### 2. Pipeline di Elaborazione
-- Gestisce il flusso di dati tra le varie componenti del sistema
-- Carica dati da file TSV
-- Applica trasformazioni in sequenza
-- Esegue analisi sui dati trasformati
-
-#### 3. Trasformazioni
-- Implementare diverse trasformazioni sui dati
-- Vanno applicate in sequenza tutte le trasformazioni e restituito il DataFrame trasformato
-- Trasformazioni da implementare:
-  - `add_avg_ph_per_tank`: Calcola il pH medio per ogni cisterna
-  - `add_num_readings_per_tank`: Calcola il numero di rilevazioni per ogni cisterna
-  - `add_num_readings_per_grape_variety`: Se fornite informazioni sui vitigni, calcola il numero di rilevazioni per ogni vitigno
-  - `add_temperature_deviation`: Calcola la deviazione di temperatura rispetto a quella standard. Se la quantità in litri nella cisterna è disponibile, calcola la deviazione su 1000 litri
-
-#### 4. Computazioni HPC
-- Implementazione di funzioni di calcolo ottimizzate con Numba
-- **Formula di Stress da Fermentazione**: Una formula O(n²) che valuta lo stress complessivo della fermentazione nelle cisterne, da implementare come segue:
-
-> Input:
-> - pH_vals: array NumPy con valori di pH per ogni rilevazione
-> - temp_vals: array NumPy con valori di temperatura per ogni rilevazione
-> - quantity_vals: array NumPy con valori di volume di mosto in litri per ogni rilevazione
->
-> Algoritmo:
-> 1. n = numero di rilevazioni (lunghezza degli array)
-> 2. Se n = 0, restituisci 0.0
-> 3. Inizializza stress_sum = 0.0
-> 4. Per ogni coppia di rilevazioni (i, j) da 0 a n-1:\
->    a. pH_dev = |pH_vals[i] - pH_vals[j]| (deviazione assoluta dei valori di pH)\
->    b. t_dev = |temp_vals[i] - temp_vals[j]| * 2.0 (deviazione assoluta di temperatura moltiplicata per 2)\
->    c. quantity_factor = (500.0 / quantity_vals[i]) + (500.0 / quantity_vals[j])\
->    d. stress_sum += (pH_dev + t_dev) * quantity_factor\
-> 5. Stress finale = stress_sum / (n * n)
->
-> Output:
-> - Un singolo valore floating point che rappresenta lo stress complessivo
-
-L'idea è che una maggiore variabilità di pH e temperatura tra le rilevazioni (e cisterne di volume ridotto, quindi termicamente meno stabili) indichi un rischio più alto di fermentazione irregolare o bloccata.
-
-- Ottimizzazione delle performance per grandi volumi di dati (particolare attenzione all'efficienza algoritmica e alla gestione della memoria)
-
-### Dataset
-
-I dataset forniti contengono:
-- **sensors_*.tsv**: Dati dei sensori con misurazioni di pH, temperatura, volume del mosto, ecc.
-- **tank_info_*.tsv**: Informazioni sulle varie cisterne della cantina (capacità, vitigni ospitati, ecc.)
-
-Esempio di formato del dataset dei sensori (`sensors_*.tsv`):
-```
-tank_id	time	pH	temp	quantity_liters
-1	2025-01-01 00:00	3.4	25.0	500
-1	2025-01-01 01:00	3.5	26.0	500
-2	2025-01-01 00:30	3.7	24.5	1000
+```bash
+git clone https://github.com/caemanuela/winery-adventures.git
+cd winery-adventures
 ```
 
-Esempio di formato delle informazioni sulle cisterne (`tank_info_*.tsv`):
+Sincronizzare l'ambiente con `uv`:
+
+```bash
+uv sync --all-groups
 ```
-tank_id	grape_variety	capacity_liters
-1	CannonauVellutato,BovaleBarricato,CarignanoNobile	1344
-2	VermentinoAromatico,NuragusIntenso,NascoSapido	1279
+
+Questo installa le dipendenze del progetto nell'ambiente virtuale.
+
+## Generazione dei dati
+
+Il progetto include uno script per generare un dataset di sensori più grande, utile soprattutto per i test delle prestazioni:
+
+```bash
+uv run python data_generator.py
 ```
 
-Si consiglia di iniziare con i file di esempio più piccoli per lo sviluppo e il testing, e poi verificare la scalabilità con i dataset più grandi.
-Successivamente, sarà necessario creare il dataset più grande tramite lo script `data_generator.py`, che restituirà un dataset di dimensioni maggiori.
-I report di performance sulla memoria e sui tempi di computazione dovranno essere generati utilizzando questi dataset.
+I dataset di grandi dimensioni generati dallo script non sono inclusi nel repository.
 
-### Requisiti di Performance
+## Utilizzo della pipeline
 
-- Le implementazioni devono essere efficienti e scalare bene con grandi volumi di dati
-- È richiesta l'ottimizzazione della formula di stress tramite Numba
-- Il sistema deve gestire correttamente i dataset di grandi dimensioni (>100,000 righe)
+La pipeline può essere eseguita dalla riga di comando specificando il dataset dei sensori:
 
-### Documentazione e Design UML Richiesti
+```bash
+uv run python winery_adventures/main.py --input-csv data/full_sensors.tsv
+```
 
-Una parte fondamentale del progetto è la creazione della documentazione e dei diagrammi UML appropriati:
+È possibile specificare anche il file con le informazioni sulle cisterne:
 
-#### Diagrammi UML Richiesti
-1. **Diagramma delle Classi**: Mostrare la struttura completa del sistema, incluse tutte le classi, interfacce, relazioni ed ereditarietà
-2. **Diagramma di Sequenza**: Illustrare il flusso di esecuzione della pipeline di elaborazione dati
-3. **Diagramma dei Casi d'Uso**: Rappresentare le principali funzionalità del sistema dal punto di vista dell'utente
+```bash
+uv run python winery_adventures/main.py \
+    --input-csv data/full_sensors.tsv \
+    --tank-info-csv data/tank_info.tsv
+```
 
-#### Documentazione
-- **README aggiornato**: Con istruzioni complete per l'installazione, configurazione e uso
-- **Docstrings**: Ogni classe, funzione e metodo deve avere una docstring completa con descrizione, parametri e valori di ritorno
-- **Commenti nel codice**: Per le sezioni più complesse o algoritmi non immediatamente comprensibili
-- **Report di Performance**: Analisi delle performance delle implementazioni, specialmente per la funzione di stress da fermentazione
+Se `--output-csv` non viene specificato, il risultato viene salvato in `results.csv`.
 
-Assicuratevi di inserire la documentazione in formato compatibile con strumenti di generazione di documentazione come Sphinx.
+È inoltre possibile specificare il nome del progetto WandB con `--project-name`.
 
-### Requisiti di Qualità del Codice
+## HPC e benchmark
 
-- Il codice deve seguire le convenzioni PEP 8, sfruttando formatter e linter adeguati
-- L'intero progetto deve essere strutturato secondo i principi della programmazione orientata agli oggetti
-- Gestione degli errori robusta
-- Implementazione di logging adeguato
+Il calcolo dello stress confronta le diverse rilevazioni appartenenti alla stessa cisterna, con complessità `O(n²)`. Per questo motivo, il progetto utilizza Numba e Joblib per ridurre i tempi di esecuzione.
+
+I benchmark permettono di confrontare:
+
+- l'implementazione in Python puro con quella compilata con Numba;
+- i tempi di esecuzione di Joblib utilizzando un numero diverso di core.
+
+Per eseguire i benchmark:
+
+```bash
+uv run python benchmark.py
+```
+
+I grafici dei benchmark possono essere generati con:
+
+```bash
+uv run python visalization_generator.py
+```
+
+I risultati vengono utilizzati per valutare l'effetto della compilazione JIT e della parallelizzazione sul tempo di esecuzione.
+
+## Weights & Biases
+
+La pipeline può registrare lo `stress_score` su Weights & Biases.
+
+Prima di eseguire la pipeline con il logging abilitato, è necessario autenticarsi:
+
+```bash
+uv run wandb login
+```
+
+Successivamente è possibile eseguire la pipeline con il logging attivo.
+
+## Testing e code quality
+
+Il progetto include unit test e acceptance test. I principali controlli possono essere eseguiti con un unico comando:
+
+```bash
+uv run python run_checks.py
+```
+
+Lo script esegue in sequenza:
+
+1. controllo della formattazione con Ruff;
+2. controllo del codice con Ruff;
+3. type checking con Mypy;
+4. test con Pytest e calcolo della coverage.
+
+La configurazione di Pytest genera anche i report di coverage e i report XML/JUnit utilizzati dalla pipeline di CI.
+
+Gli stessi controlli vengono eseguiti automaticamente tramite GitHub Actions quando viene effettuato un push o aperta una Pull Request verso `main`.
+
+## Documentazione
+
+La documentazione tecnica viene generata con Sphinx a partire dalle docstring del codice.
+
+Per generarla:
+
+```bash
+uv run sphinx-build -b html docs docs/build/html
+```
+
+La documentazione HTML viene creata nella directory `docs/build/html`.
+
+Il progetto contiene inoltre i diagrammi UML relativi alla struttura e al funzionamento del sistema nella directory `docs/uml-diagrams/`.
+
+## Struttura del progetto
+
+```
+winery-adventures/
+├── winery_adventures/
+│   ├── base.py
+│   ├── computations.py
+│   ├── transformations.py
+│   ├── pipeline.py
+│   └── main.py
+├── tests/
+│   ├── unit/
+│   └── acceptance/
+├── data/
+├── docs/
+│   ├── uml/
+│   ├── data_visualization/
+│   └── reports/
+├── benchmark.py
+├── visalization_generator.py
+├── data_generator.py
+├── run_checks.py
+└── pyproject.toml
+```
 
 ---
 
-Buon lavoro e buon divertimento con Winery Adventures! 🍷 🍇 🥂
+Università degli Studi di Cagliari, CdL Informatica Applicata e Data Analytics
+
+Ingegneria del Software, 2026
+
+**Team:** Emanuela Cannas, Giada Orrù
+
+## English version
+
+Winery Adventures is a data analysis project based on sensor readings collected during wine fermentation. The system processes data such as temperature, pH, and volume and calculates a fermentation stress score.
+
+The project combines object-oriented programming, data processing, and High-Performance Computing (HPC) techniques to analyse the data and reduce computation time.
+
+## Main features
+
+- **Processing pipeline:** the different transformation and analysis steps are organized into a pipeline made up of several analyzers.
+- **Data transformation:** Polars is used to calculate tank-level statistics, grape variety information, and deviations from the reference fermentation temperature.
+- **HPC computation:** Numba is used for JIT compilation, while Joblib is used to distribute computations across multiple CPU cores.
+- **Experiment tracking:** the project can use Weights & Biases (WandB) to log the `stress_score`.
+- **Documentation:** the main components and structure of the project are documented with Sphinx and UML diagrams.
+
+## Technologies
+
+- **Environment and dependency management:** uv
+- **Data processing:** Polars, NumPy
+- **HPC and parallel processing:** Numba, Joblib
+- **Experiment tracking:** Weights & Biases
+- **Testing:** Pytest
+- **Code quality:** Ruff, Mypy
+- **Documentation:** Sphinx
+
+## Prerequisites
+
+Before installing the project, make sure that **Python 3.11 or 3.12** and **uv** are installed. The project uses `uv` to manage the virtual environment and dependencies.
+
+If `uv` is not already installed, follow the instructions in the [official uv documentation](https://docs.astral.sh/uv/getting-started/installation/).
+
+## Installation
+
+Clone the repository and move into the project directory:
+
+```bash
+git clone https://github.com/caemanuela/winery-adventures.git
+cd winery-adventures
+```
+
+Sync the project environment with `uv`:
+
+```bash
+uv sync --all-groups
+```
+
+This installs the project dependencies in the virtual environment.
+
+## Data generation
+
+The project includes a script for generating a larger sensor dataset, mainly for performance testing:
+
+```bash
+uv run python data_generator.py
+```
+
+The large datasets generated by the script are not included in the repository.
+
+## Running the pipeline
+
+The pipeline can be run from the command line by specifying the sensor dataset:
+
+```bash
+uv run python winery_adventures/main.py --input-csv data/full_sensors.tsv
+```
+
+A tank metadata file can also be provided:
+
+```bash
+uv run python winery_adventures/main.py \
+    --input-csv data/full_sensors.tsv \
+    --tank-info-csv data/tank_info.tsv
+```
+
+If `--output-csv` is not specified, the processed data is saved to `results.csv`.
+
+The WandB project name can also be specified using `--project-name`.
+
+## HPC and benchmarks
+
+The stress calculation compares the different sensor readings belonging to the same tank, resulting in `O(n²)` complexity. Numba and Joblib are therefore used to improve the execution time.
+
+The benchmark scripts compare:
+
+- the pure Python implementation with the Numba implementation;
+- Joblib execution using different numbers of CPU cores.
+
+To run the benchmarks:
+
+```bash
+uv run python benchmark.py
+```
+
+The benchmark plots can be generated with:
+
+```bash
+uv run python visualization_generator.py
+```
+
+The results can then be used to evaluate the effect of JIT compilation and parallel processing on execution time.
+
+## Weights & Biases
+
+The pipeline can log the `stress_score` to Weights & Biases.
+
+Before running the pipeline with logging enabled, authenticate with:
+
+```bash
+uv run wandb login
+```
+
+The pipeline can then be run with WandB logging enabled.
+
+## Testing and code quality
+
+The project includes unit tests and acceptance tests. The main checks can be run with a single command:
+
+```bash
+uv run python run_checks.py
+```
+
+The script runs the following checks in sequence:
+
+1. Ruff formatting check;
+2. Ruff linting;
+3. Mypy type checking;
+4. Pytest and coverage.
+
+Pytest is also configured to generate coverage and XML/JUnit reports used by the CI pipeline.
+
+The same checks are run automatically through GitHub Actions when changes are pushed or a Pull Request is opened against `main`.
+
+## Documentation
+
+The technical documentation is generated with Sphinx from the project's docstrings.
+
+To build it locally:
+
+```bash
+uv run sphinx-build -b html docs docs/build/html
+```
+
+The generated HTML documentation is placed in `docs/build/html`.
+
+The project also includes UML diagrams describing the structure and behaviour of the system in `docs/uml-diagrams/`.
+
+## Project structure
+
+```
+winery-adventures/
+├── winery_adventures/
+│   ├── base.py
+│   ├── computations.py
+│   ├── transformations.py
+│   ├── pipeline.py
+│   └── main.py
+├── tests/
+│   ├── unit/
+│   └── acceptance/
+├── data/
+├── docs/
+│   ├── uml/
+│   ├── data_visualization/
+│   └── reports/
+├── benchmark.py
+├── visalization_generator.py
+├── data_generator.py
+├── run_checks.py
+└── pyproject.toml
+```
+
+---
+
+Università degli Studi di Cagliari, BSc Applied Computer Science and Data Analytics
+
+Software Engineering, 2026
+
+**Team:** Emanuela Cannas, Giada Orrù
