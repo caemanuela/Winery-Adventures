@@ -9,3 +9,4 @@ pipeline.
    :caption: Contents:
 
    modules
+   performance_report
