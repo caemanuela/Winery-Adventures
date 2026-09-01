@@ -166,7 +166,7 @@ winery-adventures/
 │   ├── data_visualization/
 │   └── reports/
 ├── benchmark.py
-├── visalization_generator.py
+├── visualization_generator.py
 ├── data_generator.py
 ├── run_checks.py
 └── pyproject.toml
@@ -344,7 +344,7 @@ winery-adventures/
 │   ├── data_visualization/
 │   └── reports/
 ├── benchmark.py
-├── visalization_generator.py
+├── visualization_generator.py
 ├── data_generator.py
 ├── run_checks.py
 └── pyproject.toml
