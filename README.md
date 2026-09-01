@@ -97,7 +97,7 @@ uv run python benchmark.py
 I grafici dei benchmark possono essere generati con:
 
 ```bash
-uv run python visalization_generator.py
+uv run python visualization_generator.py
 ```
 
 I risultati vengono utilizzati per valutare l'effetto della compilazione JIT e della parallelizzazione sul tempo di esecuzione.
