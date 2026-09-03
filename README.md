@@ -178,7 +178,7 @@ Università degli Studi di Cagliari, CdL Informatica Applicata e Data Analytics
 
 Ingegneria del Software, 2026
 
-**Team:** Emanuela Cannas, Giada Orrù
+**Team:** [Emanuela Cannas](https://github.com/caemanuela), [Giada Orrù](https://github.com/giadaorru)
 
 ## English version
 
@@ -356,4 +356,4 @@ Università degli Studi di Cagliari, BSc Applied Computer Science and Data Analy
 
 Software Engineering, 2026
 
-**Team:** Emanuela Cannas, Giada Orrù
+**Team:** [Emanuela Cannas](https://github.com/caemanuela), [Giada Orrù](https://github.com/giadaorru)
