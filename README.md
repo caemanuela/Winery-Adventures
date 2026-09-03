@@ -4,7 +4,7 @@
 
 ## Versione italiana
 
-Winery Adventures è un progetto di analisi di dati provenienti da sensori utilizzati durante la fermentazione del vino. Il sistema elabora dati relativi a temperatura, pH e volume e calcola un indice di stress della fermentazione.
+Winery Adventures è un progetto di analisi di dati provenienti da sensori utilizzati durante la fermentazione del vino. Il sistema elabora dati relativi a temperatura, pH e volume e calcola un indice di stress della fermentazione. 
 
 Il progetto combina programmazione a oggetti, trasformazione dei dati e tecniche di High-Performance Computing (HPC) per analizzare i dati e ridurre i tempi di calcolo.
 
